@@ -24,8 +24,10 @@
 
 - Potenciais gargalos do sistema:
 
+No caso do serviço `listarProdutos`, não conseguimos identificar um potencial gargalo no sistema pois não foi possível estabelecer um padrão de crescimento da latência em comparação ao aumento de requisições concorrentes. Esse comportamento pode ser decorrente do uso do Redis como memória em cache, fazendo com que a aplicação não precise ir ao banco para recuperar os dados a cada requisição.
+
 ### Atualizar produto de um fornecedor
-- Tipo de operações: atualização
+- Tipo de operações: leitura e atualização
 - Arquivos envolvidos:
     - [ProdutoController.java](../src/main/java/bsi/pcs/organo/controller/ProdutoController.java)
     - [ProdutoService.java](../src/main/java/bsi/pcs/organo/service/ProdutoService.java)
@@ -46,3 +48,5 @@
 ![latencia por concorrencia atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_atualizarProduto.png)
 
 - Potenciais gargalos do sistema:
+
+No caso do serviço `atualizarProdutos`, não conseguimos identificar um potencial gargalo no sistema pois não foi possível estabelecer um padrão de crescimento da latência em comparação ao aumento de requisições concorrentes. Esse comportamento pode ser decorrente da pequena quantidade de registros contidos no banco, fazendo com que os processos de leitura e atualização sejam realizados rapidamente.
