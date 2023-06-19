@@ -34,10 +34,9 @@ public class ProdutoService {
 		return pe.get();
 	}
 
-	@CachePut(value = "produto", key = "#id")
+	@CachePut(value = "produto", key = "#produtoId")
 	@CacheEvict("fornecedorProdutos")
-	public Produto atualizar(Produto produto) {
-		Produto produtoEncontrado = this.produtoRepository.findByFornecedorCnpjAndNome(produto.getFornecedor().getCnpj(), produto.getNome());
+	public Produto atualizar(Long produtoId, Produto produto, Produto produtoEncontrado) {
 		produtoEncontrado.setNome(produto.getNome());
 		produtoEncontrado.setFotoUrl(produto.getFotoUrl());
 		produtoEncontrado.setPreco(produto.getPreco());
