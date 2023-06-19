@@ -15,9 +15,9 @@
 - Data da medição: 18/06/2023
 - Descrição das configurações: máquina local Windows 11
 - Testes de carga (SLA): latência, vazão e concorrência (limite de requisições simultâneas)
-    - ![dados listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/dados_medicao_listarProdutos.png)
-    - ![vazao por concorrencia listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/vazao_por_concorrencia_listarProdutos.png)
-    - ![latencia por concorrencia listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_listarProdutos.png)
+![dados listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/dados_medicao_listarProdutos.png)
+![vazao por concorrencia listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/vazao_por_concorrencia_listarProdutos.png)
+![latencia por concorrencia listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_listarProdutos.png)
 
 - Potenciais gargalos do sistema:
 
@@ -35,8 +35,8 @@
 - Data da medição: 18/06/2023
 - Descrição das configurações: máquina local Windows 11
 - Testes de carga (SLA): latência, vazão e concorrência (limite de requisições simultâneas)
-    - ![dados atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/dados_medicao_atualizarProduto.png)
-    - ![vazao por concorrencia atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/vazao_por_concorrencia_atualizarProduto.png)
-    - ![latencia por concorrencia atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_atualizarProduto.png)
+![dados atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/dados_medicao_atualizarProduto.png)
+![vazao por concorrencia atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/vazao_por_concorrencia_atualizarProduto.png)
+![latencia por concorrencia atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_atualizarProduto.png)
 
 - Potenciais gargalos do sistema:
