@@ -23,5 +23,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 			  nativeQuery = true)
 	public List<Produto> findByFornecedorCnpj(String cnpj);
 	
+	@Query(value = "SELECT * FROM produto p where (p.fornecedor_id = ?1 and p.deleted = false)", 
+			  nativeQuery = true)
 	public List<Produto> findByFornecedorId(Long fornecedorId);
 }
