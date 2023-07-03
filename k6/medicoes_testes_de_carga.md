@@ -12,6 +12,7 @@
 - Arquivos com o código fonte de medição do SLA:
     - [load_tests_listarProdutos.js](load_tests_listarProdutos.js)
     - [results_load_test_listarProdutos.csv](results_load_test_listarProdutos.csv)
+    - [results_load_test_listarProdutos_medicao_2.csv](results_load_test_listarProdutos_medicao_2.csv)
 - Descrição das configurações: máquina local Windows 11
 
 #### MEDIÇÃO 1
@@ -38,7 +39,7 @@ No caso do serviço `listarProdutos`, não conseguimos identificar um potencial 
 
 ![latencia por concorrencia listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_listarProdutos_medicao_2.png)
 
-- Potenciais gargalos do sistema:
+- Melhorias/otimizações:
 
 ### Atualizar produto de um fornecedor
 - Tipo de operações: leitura e atualização
@@ -51,6 +52,7 @@ No caso do serviço `listarProdutos`, não conseguimos identificar um potencial 
 - Arquivos com o código fonte de medição do SLA:
     - [load_tests_atualizarProduto.js](load_tests_atualizarProduto.js)
     - [results_load_test_atualizarProduto.csv](results_load_test_atualizarProduto.csv)
+    - [results_load_test_atualizarProduto_medicao_2.csv](results_load_test_atualizarProduto_medicao_2.csv)
 - Descrição das configurações: máquina local Windows 11
 
 #### MEDIÇÃO 1
@@ -77,4 +79,4 @@ No caso do serviço `atualizarProdutos`, não conseguimos identificar um potenci
 
 ![latencia por concorrencia atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_atualizarProduto_medicao_2.png)
 
-- Potenciais gargalos do sistema:
+- Melhorias/otimizações:
