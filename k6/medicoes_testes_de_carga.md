@@ -41,6 +41,17 @@ No caso do serviço `listarProdutos`, não conseguimos identificar um potencial 
 
 - Melhorias/otimizações:
 
+Como a aplicação foi construída utilizando a versão 2.4.0 do Spring Boot, o HikariCP é o pool de conexões default, então a aplicação já estava utilizando um pool desde a primeira medição. Além disso, como a relação entre fornecedor e produto é OneToMany, não tivemos que corrigir o problema de complexidade n+1, que ocorreria no caso de uma relação ManyToMany. Esse serviço utiliza o Redis como cache, então, a cada teste, o banco é consultado apenas na primeira requisição. 
+
+A melhoria que implementamos foi buscar os produtos de um fornecedor utilizando a coluna fornecedor_id da coluna Produto, que é uma chave estrangeira e indexada por definição no MySQL. Na primeira medição,
+a busca pelos produtos era realizada utilizando a coluna cnpj da tabela Fornecedor. Assim, era necessário performar um inner join entre as tabelas Fornecedor e Produto. Ao buscar utilizando a coluna fornecedor_id, a execução de um select simples é suficiente.
+
+Os arquivos modificados foram:
+    - [FornecedorController.java](../src/main/java/bsi/pcs/organo/controller/FornecedorController.java), em que o método
+    `listarProdutos` foi alterado para receber o id do Fornecedor como path variable e chamar o método `listarProdutos` da classe `FornecedorService` passando o id do Fornecedor como argumento. 
+    - [FornecedorService.java](../src/main/java/bsi/pcs/organo/service/FornecedorService.java), em que o método `listarProdutos` foi sobrecarregado para aceitar o id do Fornecedor como argumento.
+    - [ProdutoRepository.java](../src/main/java/bsi/pcs/organo/repository/FornecedorRepository.java), em que o método `findByFornecedorId` foi adicionado para realizar a busca dos produtos utilizando a coluna fornecedor_id.
+
 ### Atualizar produto de um fornecedor
 - Tipo de operações: leitura e atualização
 - Arquivos envolvidos:
@@ -80,3 +91,5 @@ No caso do serviço `atualizarProdutos`, não conseguimos identificar um potenci
 ![latencia por concorrencia atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_atualizarProduto_medicao_2.png)
 
 - Melhorias/otimizações:
+
+Como a aplicação foi construída utilizando a versão 2.4.0 do Spring Boot, o HikariCP é o pool de conexões default, então a aplicação já estava utilizando um pool desde a primeira medição.
