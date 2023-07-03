@@ -47,10 +47,10 @@ A melhoria que implementamos foi buscar os produtos de um fornecedor utilizando 
 a busca pelos produtos era realizada utilizando a coluna cnpj da tabela Fornecedor. Assim, era necessário performar um inner join entre as tabelas Fornecedor e Produto. Ao buscar utilizando a coluna fornecedor_id, a execução de um select simples é suficiente.
 
 Os arquivos modificados foram:
-    - [FornecedorController.java](../src/main/java/bsi/pcs/organo/controller/FornecedorController.java), em que o método
+    1. [FornecedorController.java](../src/main/java/bsi/pcs/organo/controller/FornecedorController.java), em que o método
     `listarProdutos` foi alterado para receber o id do Fornecedor como path variable e chamar o método `listarProdutos` da classe `FornecedorService` passando o id do Fornecedor como argumento. 
-    - [FornecedorService.java](../src/main/java/bsi/pcs/organo/service/FornecedorService.java), em que o método `listarProdutos` foi sobrecarregado para aceitar o id do Fornecedor como argumento.
-    - [ProdutoRepository.java](../src/main/java/bsi/pcs/organo/repository/FornecedorRepository.java), em que o método `findByFornecedorId` foi adicionado para realizar a busca dos produtos utilizando a coluna fornecedor_id.
+    2. [FornecedorService.java](../src/main/java/bsi/pcs/organo/service/FornecedorService.java), em que o método `listarProdutos` foi sobrecarregado para aceitar o id do Fornecedor como argumento.
+    3. [ProdutoRepository.java](../src/main/java/bsi/pcs/organo/repository/FornecedorRepository.java), em que o método `findByFornecedorId` foi adicionado para realizar a busca dos produtos utilizando a coluna fornecedor_id.
 
 ### Atualizar produto de um fornecedor
 - Tipo de operações: leitura e atualização
@@ -93,3 +93,5 @@ No caso do serviço `atualizarProdutos`, não conseguimos identificar um potenci
 - Melhorias/otimizações:
 
 Como a aplicação foi construída utilizando a versão 2.4.0 do Spring Boot, o HikariCP é o pool de conexões default, então a aplicação já estava utilizando um pool desde a primeira medição.
+
+A melhoria que implementamos foi buscar
