@@ -47,12 +47,12 @@ public class ProdutoController {
 	@PutMapping("/atualizar")
 	public ResponseEntity<?> update(@RequestBody(required = true) Produto produto) {
 
-		Produto produtoEncontrado = this.produtoService.retornar(produto.getFornecedor().getCnpj(), produto.getNome());
+		Produto produtoEncontrado = this.produtoService.retornarById(produto.getId());
 		if(produtoEncontrado == null) {
 			return ResponseEntity.badRequest().body("Produto informado não existe");
 		}
 		
-		return ResponseEntity.status(HttpStatus.OK).body(this.produtoService.atualizar(produtoEncontrado.getId(), produto, produtoEncontrado)); 
+		return ResponseEntity.status(HttpStatus.OK).body(this.produtoService.atualizar(produto, produtoEncontrado));
 		
 	}
 	

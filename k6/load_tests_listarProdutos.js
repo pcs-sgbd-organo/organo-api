@@ -7,6 +7,6 @@ export const options = {
 };
 
 export default function () {
-  http.get('http://localhost:8082/organo/fornecedor/73063766000199/listarProdutos');
+  http.get('http://localhost:8082/organo/fornecedor/1/listarProdutos');
   sleep(1);
 }

@@ -69,9 +69,9 @@ public class FornecedorController {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Não foi possível autenticar fornecedor.");
 	}
 	
-	@GetMapping("/{cnpjFornecedor}/listarProdutos")
-	public ResponseEntity<?> listProdutos(@PathVariable(required = true) String cnpjFornecedor) {	
-		return ResponseEntity.status(HttpStatus.OK).body(this.fornecedorService.listarProdutos(cnpjFornecedor)); 
+	@GetMapping("/{idFornecedor}/listarProdutos")
+	public ResponseEntity<?> listProdutos(@PathVariable(required = true) Long idFornecedor) {	
+		return ResponseEntity.status(HttpStatus.OK).body(this.fornecedorService.listarProdutos(idFornecedor)); 
 	}
 	
 	@GetMapping("/{cnpjFornecedor}/listarPedidos")

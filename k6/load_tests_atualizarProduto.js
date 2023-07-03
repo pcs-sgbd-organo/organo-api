@@ -13,6 +13,7 @@ const params = {
   };
 
 const payload = {
+    "id": 4,
     "nome": "Tomate Cereja Solo Vivo Organicos",
     "preco": "7.99",
     "validade": "2021-12-19",
@@ -30,7 +31,7 @@ const payload = {
 
 export default function () {
     http.put(
-        `http://localhost:8082/organo/produto/73063766000199/atualizar`,
+        `http://localhost:8082/organo/produto/4/atualizar`,
         JSON.stringify(payload),
         params
       );

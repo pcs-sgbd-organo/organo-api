@@ -22,4 +22,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 			+ "and p.deleted = false", 
 			  nativeQuery = true)
 	public List<Produto> findByFornecedorCnpj(String cnpj);
+	
+	public List<Produto> findByFornecedorId(Long fornecedorId);
 }

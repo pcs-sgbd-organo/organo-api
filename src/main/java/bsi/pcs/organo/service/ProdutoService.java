@@ -34,9 +34,9 @@ public class ProdutoService {
 		return pe.get();
 	}
 
-	@CachePut(value = "produto", key = "#produtoId")
+	@CachePut(value = "produto", key = "#produto.id")
 	@CacheEvict("fornecedorProdutos")
-	public Produto atualizar(Long produtoId, Produto produto, Produto produtoEncontrado) {
+	public Produto atualizar(Produto produto, Produto produtoEncontrado) {
 		produtoEncontrado.setNome(produto.getNome());
 		produtoEncontrado.setFotoUrl(produto.getFotoUrl());
 		produtoEncontrado.setPreco(produto.getPreco());

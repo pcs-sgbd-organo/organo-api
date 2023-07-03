@@ -102,6 +102,12 @@ public class FornecedorService {
 		return produtosEncontrados;
 	}
 	
+	@Cacheable(value = "fornecedorProdutos", key="#id", unless = "#result == null")
+	public List<Produto> listarProdutos(Long id) {
+		List<Produto> produtosEncontrados =  this.produtoRepository.findByFornecedorId(id);		
+		return produtosEncontrados;
+	}
+	
 	@Cacheable(value = "fornecedorPedidos", key="#cnpj", unless = "#result == null")
 	public List<Pedido> listarPedidos(String cnpj) {
 		List<Pedido> pedidosEncontrados = this.pedidoRepository.findByFornecedorCnpj(cnpj);
