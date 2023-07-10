@@ -49,7 +49,19 @@ a busca pelos produtos era realizada utilizando a coluna cnpj da tabela Forneced
 Os arquivos modificados foram:
 - [FornecedorController.java](../src/main/java/bsi/pcs/organo/controller/FornecedorController.java), em que o método `listarProdutos` foi alterado para receber o id do Fornecedor como path variable e chamar o método `listarProdutos` da classe `FornecedorService` passando o id do Fornecedor como argumento. 
 - [FornecedorService.java](../src/main/java/bsi/pcs/organo/service/FornecedorService.java), em que o método `listarProdutos` foi sobrecarregado para aceitar o id do Fornecedor como argumento.
-- [ProdutoRepository.java](../src/main/java/bsi/pcs/organo/repository/FornecedorRepository.java), em que o método `findByFornecedorId` foi adicionado para realizar a busca dos produtos utilizando a coluna fornecedor_id.
+- [ProdutoRepository.java](../src/main/java/bsi/pcs/organo/repository/ProdutoRepository.java), em que o método `findByFornecedorId` foi adicionado para realizar a busca dos produtos utilizando a coluna fornecedor_id.
+
+#### MEDIÇÃO 3
+- Data da medição: 09/07/2023
+- Testes de carga (SLA): latência, vazão e concorrência (limite de requisições simultâneas)
+
+![dados listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/dados_medicao_3_listarProdutos.png)
+
+![vazao por concorrencia listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/vazao_por_concorrencia_listarProdutos_medicao_3.png)
+
+![latencia por concorrencia listarProdutos](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_listarProdutos_medicao_3.png)
+
+- Melhorias/otimizações: Nenhuma melhoria foi realizada.
 
 ### Atualizar produto de um fornecedor
 - Tipo de operações: leitura e atualização
@@ -96,4 +108,23 @@ Como a aplicação foi construída utilizando a versão 2.4.0 do Spring Boot, o 
 A melhoria que implementamos foi adicionar cache (utilizando o Redis) no método que verifica se o produto existe na base antes de atualizá-lo. Assim, a cada teste, o banco busca o produto no banco apenas na primeira requisição. Em vez de consultar o banco duas vezes, uma para leitura e outra para escrita, o banco é consultado apenas na atualização.
 
 Os arquivos modificados foram:
-- [ProdutoController.java](../src/main/java/bsi/pcs/organo/controller/FornecedorController.java), em que o método `update` foi alterado para chamar o método `retornarById` da classe `ProdutoService` passando o id do Produto enviado no corpo da requisição como argumento. Anteriormente era utilizado o método `retornar` (também da classe `ProdutoService`) que não utilizava cache.
+- [ProdutoController.java](../src/main/java/bsi/pcs/organo/controller/ProdutoController.java), em que o método `update` foi alterado para chamar o método `retornarById` da classe `ProdutoService` passando o id do Produto enviado no corpo da requisição como argumento. Anteriormente era utilizado o método `retornar` (também da classe `ProdutoService`) que não utilizava cache.
+
+#### MEDIÇÃO 3
+- Data da medição: 09/07/2023
+- Testes de carga (SLA): latência, vazão e concorrência (limite de requisições simultâneas)
+
+![dados atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/dados_medicao_3_atualizarProduto.png)
+
+![vazao por concorrencia atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/vazao_por_concorrencia_atualizarProduto_medicao_3.png)
+
+![latencia por concorrencia atualizarProduto](https://github.com/pcs-sgbd-organo/organo-api/blob/master/k6/latencia_por_concorrencia_atualizarProduto_medicao_3.png)
+
+- Melhorias/otimizações:
+
+A melhoria que implementamos foi adicionar um if para verificar se o produto enviado no corpo da requisição é igual ao produto encontrado no banco. Se eles forem iguais, então nenhum dado foi modificado e portanto o produto não precisa ser atualizado. Assim, chamadas desnecessárias ao banco são evitadas e a latência diminui.
+
+Os arquivos modificados foram:
+- [ProdutoController.java](../src/main/java/bsi/pcs/organo/controller/ProdutoController.java), em que o método `update` foi alterado para verificar se o produto enviado no corpo da requisição é igual ao produto encontrado no banco. Caso o produto seja igual, então o banco não atualiza o registro.
+- [Produto.java](../src/main/java/bsi/pcs/organo/model/Produto.java), em que o método equals() foi overrided.
+- [Fornecedor.java](../src/main/java/bsi/pcs/organo/model/Fornecedor.java), em que o método equals() foi overrided.
