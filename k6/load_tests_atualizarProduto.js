@@ -16,9 +16,9 @@ const payload = {
     "id": 4,
     "nome": "Tomate Cereja Solo Vivo Organicos",
     "preco": "7.99",
+    "quantidade": 87,
     "validade": "2021-12-19",
     "fotoUrl": "https://i.imgur.com/K3DDCDn.jpg",
-    "quantidade": 87,
     "fornecedor": {
         "nomeFantasia": "Hortifruti Maracanã",
         "email": "jpportocampos@gmail.com",

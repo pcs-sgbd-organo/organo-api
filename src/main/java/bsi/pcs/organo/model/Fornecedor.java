@@ -127,5 +127,13 @@ public class Fornecedor implements Serializable {
 		this.horarios = horarios;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		Fornecedor f = (Fornecedor) obj;		
+		if(this.getCnpj().equals(f.getCnpj())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

@@ -103,4 +103,26 @@ public class Produto implements Serializable {
 		this.deleted = deleted;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Produto p = (Produto) obj;
+
+		if(this.getId().equals(p.getId()) &&
+				this.getFornecedor().equals(p.getFornecedor()) &&
+				this.getFotoUrl().equals(p.getFotoUrl()) &&
+				this.getNome().equals(p.getNome()) &&
+				this.getPreco() == p.getPreco() &&
+				this.getQuantidade() == p.getQuantidade() &&
+				(this.getValidade().compareTo(p.getValidade()) == 0) &&
+				(this.isDeleted() == p.isDeleted())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + this.getId() + "\nNome: " + this.getNome() + "\nPreço: " + this.getPreco() + "\nQuantidade: " + this.getQuantidade() + "\nFoto: " + this.getFotoUrl() + "\nValidade: " + this.getValidade() + "\nDeletado: " + this.isDeleted() + "\nFornecedor: " + this.getFornecedor() + "\n"; 
+	}
 }
